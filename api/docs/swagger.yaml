@@ -1,0 +1,128 @@
+definitions:
+  model.CreateBook:
+    properties:
+      author_name:
+        type: string
+      title:
+        type: string
+    type: object
+  model.UpdateBook:
+    properties:
+      author_name:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /book/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This api is using deleteting book by id
+      parameters:
+      - description: book id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create book summary
+      tags:
+      - Book
+    get:
+      consumes:
+      - application/json
+      description: This api is using getting book by id
+      parameters:
+      - description: book id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create book summary
+      tags:
+      - Book
+    put:
+      consumes:
+      - application/json
+      description: This api is using update new book
+      parameters:
+      - description: book id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Category
+        enum:
+        - Roman
+        - Qissa
+        - Hikoyalar
+        - Ilmiy-ommabop
+        - Diniy
+        in: query
+        name: category
+        type: string
+      - description: book body
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateBook'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: update book summary
+      tags:
+      - Book
+  /book/create:
+    post:
+      consumes:
+      - application/json
+      description: This api is using create new book
+      parameters:
+      - description: Category
+        enum:
+        - Roman
+        - Qissa
+        - Hikoyalar
+        - Ilmiy-ommabop
+        - Diniy
+        in: query
+        name: category
+        type: string
+      - description: book body
+        in: body
+        name: book
+        required: true
+        schema:
+          $ref: '#/definitions/model.CreateBook'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+      summary: Create book summary
+      tags:
+      - Book
+swagger: "2.0"
